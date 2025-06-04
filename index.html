@@ -1,112 +1,517 @@
-/* style.css */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterline Film Festival</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dark/Light Mode Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
 
-body, html {
-  height: 100%;
-  width: 100%;
-  font-family: 'Helvetica Neue', sans-serif;
-  overflow-x: hidden;
-  background: #0e0e2c;
-  color: white;
-}
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">WATERLINE</span>
+                <div class="wave-accent"></div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#submissions" class="nav-link">Submissions</a></li>
+                <li><a href="#schedule" class="nav-link">Schedule</a></li>
+                <li><a href="#filmmakers" class="nav-link">Filmmakers</a></li>
+                <li><a href="#news" class="nav-link">News</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-canvas#waveCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="wave-animation"></div>
+            <div class="wave-animation wave-2"></div>
+            <div class="wave-animation wave-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">WATERLINE</span>
+                <span class="title-line">FILM FESTIVAL</span>
+            </h1>
+            <p class="hero-subtitle">Where Cinema Flows Like Water</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="247">0</span>
+                    <span class="stat-label">Submissions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Countries</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-label">Days</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <button class="cta-button primary">Submit Your Film</button>
+                <button class="cta-button secondary">Get Tickets</button>
+            </div>
+        </div>
+        <div class="countdown-container">
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.content {
-  position: relative;
-  z-index: 2;
-  padding: 5vh 5vw;
-}
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Waterline</h2>
+                    <p class="about-description">
+                        The Waterline Film Festival celebrates the fluid nature of storytelling, 
+                        where independent voices flow together to create a powerful current of 
+                        cinematic excellence. We showcase bold, innovative films that push 
+                        boundaries and challenge perspectives.
+                    </p>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-film"></i>
+                            <h3>Independent Focus</h3>
+                            <p>Celebrating unique voices in cinema</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-globe"></i>
+                            <h3>Global Reach</h3>
+                            <p>Films from around the world</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-award"></i>
+                            <h3>Industry Recognition</h3>
+                            <p>Platform for career advancement</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="floating-elements">
+                        <div class="float-element"></div>
+                        <div class="float-element"></div>
+                        <div class="float-element"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    <!-- Submissions Section -->
+    <section id="submissions" class="submissions">
+        <div class="container">
+            <h2 class="section-title">Film Submissions</h2>
+            <div class="submission-tracker">
+                <div class="tracker-visual">
+                    <div class="progress-ring">
+                        <svg width="200" height="200">
+                            <circle cx="100" cy="100" r="90" stroke-width="4" stroke="#333" fill="none"></circle>
+                            <circle cx="100" cy="100" r="90" stroke-width="4" stroke="url(#gradient)" fill="none" 
+                                    stroke-dasharray="565.48" stroke-dashoffset="282.74" id="progressCircle"></circle>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#00f5ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ff006e;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="ring-content">
+                            <span class="submissions-count">247</span>
+                            <span class="submissions-label">Submissions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tracker-info">
+                    <h3>Submission Status</h3>
+                    <p>Join 247 filmmakers from around the world who have already submitted their work.</p>
+                    <div class="submission-stats">
+                        <div class="stat">
+                            <span class="stat-value">89%</span>
+                            <span class="stat-desc">Narrative Features</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">23%</span>
+                            <span class="stat-desc">Documentaries</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">15%</span>
+                            <span class="stat-desc">Short Films</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submission Form -->
+            <div class="submission-form-container">
+                <form class="submission-form" id="submissionForm">
+                    <div class="form-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text">Step <span id="currentStep">1</span> of 4</span>
+                    </div>
+                    
+                    <div class="form-step active" id="step1">
+                        <h3>Film Information</h3>
+                        <div class="form-group">
+                            <input type="text" name="filmTitle" placeholder="Film Title" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="feature">Feature Film</option>
+                                <option value="short">Short Film</option>
+                                <option value="documentary">Documentary</option>
+                                <option value="animation">Animation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="runtime" placeholder="Runtime (minutes)" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step2">
+                        <h3>Director Information</h3>
+                        <div class="form-group">
+                            <input type="text" name="directorName" placeholder="Director Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="country" placeholder="Country" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step3">
+                        <h3>Film Files</h3>
+                        <div class="form-group file-upload">
+                            <input type="file" name="filmFile" id="filmFile" accept=".mp4,.mov,.avi" required>
+                            <label for="filmFile">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Upload Film File</span>
+                            </label>
+                        </div>
+                        <div class="form-group file-upload">
+                            <input type="file" name="poster" id="poster" accept=".jpg,.png,.jpeg" required>
+                            <label for="poster">
+                                <i class="fas fa-image"></i>
+                                <span>Upload Poster</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step4">
+                        <h3>Synopsis & Additional Info</h3>
+                        <div class="form-group">
+                            <textarea name="synopsis" placeholder="Film Synopsis (max 500 words)" maxlength="3000" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="directorStatement" placeholder="Director's Statement" maxlength="2000"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-prev" id="prevBtn" disabled>Previous</button>
+                        <button type="button" class="btn-next" id="nextBtn">Next</button>
+                        <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">Submit Film</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
-.title {
-  font-size: 10vw;
-  font-weight: bold;
-  background: linear-gradient(to right, #00d2ff, #3a7bd5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: floatText 3s ease-in-out infinite;
-}
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <h2 class="section-title">Festival Schedule</h2>
+            <div class="schedule-filters">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="screening">Screenings</button>
+                <button class="filter-btn" data-filter="workshop">Workshops</button>
+                <button class="filter-btn" data-filter="panel">Panels</button>
+            </div>
+            <div class="schedule-grid">
+                <div class="schedule-item" data-category="screening">
+                    <div class="schedule-time">
+                        <span class="day">Day 1</span>
+                        <span class="time">7:00 PM</span>
+                    </div>
+                    <div class="schedule-content">
+                        <h3>Opening Night Gala</h3>
+                        <p>Premiere screening of featured films</p>
+                        <div class="schedule-meta">
+                            <span class="venue">Main Theater</span>
+                            <button class="add-calendar"><i class="fas fa-calendar-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-item" data-category="workshop">
+                    <div class="schedule-time">
+                        <span class="day">Day 2</span>
+                        <span class="time">10:00 AM</span>
+                    </div>
+                    <div class="schedule-content">
+                        <h3>Cinematography Workshop</h3>
+                        <p>Master class with award-winning cinematographers</p>
+                        <div class="schedule-meta">
+                            <span class="venue">Workshop Room A</span>
+                            <button class="add-calendar"><i class="fas fa-calendar-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-item" data-category="panel">
+                    <div class="schedule-time">
+                        <span class="day">Day 3</span>
+                        <span class="time">2:00 PM</span>
+                    </div>
+                    <div class="schedule-content">
+                        <h3>Industry Panel</h3>
+                        <p>Future of Independent Cinema</p>
+                        <div class="schedule-meta">
+                            <span class="venue">Conference Hall</span>
+                            <button class="add-calendar"><i class="fas fa-calendar-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.subtitle {
-  font-size: 2vw;
-  opacity: 0.7;
-}
+    <!-- Filmmakers Spotlight -->
+    <section id="filmmakers" class="filmmakers">
+        <div class="container">
+            <h2 class="section-title">Featured Filmmakers</h2>
+            <div class="filmmakers-grid">
+                <div class="filmmaker-card">
+                    <div class="filmmaker-image">
+                        <div class="image-placeholder"></div>
+                        <div class="filmmaker-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="filmmaker-info">
+                        <h3>Alexandra Chen</h3>
+                        <p class="filmmaker-title">Director - "Midnight Currents"</p>
+                        <p class="filmmaker-bio">Award-winning director known for intimate character studies and innovative visual storytelling.</p>
+                        <div class="filmmaker-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="filmmaker-card">
+                    <div class="filmmaker-image">
+                        <div class="image-placeholder"></div>
+                        <div class="filmmaker-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="filmmaker-info">
+                        <h3>Marcus Rodriguez</h3>
+                        <p class="filmmaker-title">Director - "Urban Tides"</p>
+                        <p class="filmmaker-bio">Emerging talent exploring themes of identity and belonging through documentary storytelling.</p>
+                        <div class="filmmaker-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="filmmaker-card">
+                    <div class="filmmaker-image">
+                        <div class="image-placeholder"></div>
+                        <div class="filmmaker-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="filmmaker-info">
+                        <h3>Sophia Kim</h3>
+                        <p class="filmmaker-title">Director - "Reflections"</p>
+                        <p class="filmmaker-bio">Visionary filmmaker pushing the boundaries of narrative structure and visual poetry.</p>
+                        <div class="filmmaker-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.about, .features {
-  padding: 10vh 5vw;
-  background: rgba(0, 0, 0, 0.5);
-  margin-top: 5vh;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-}
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="container">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-grid">
+                <article class="news-item featured">
+                    <div class="news-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Festival News</span>
+                        <h3>Waterline 2025 Announces Record-Breaking Submissions</h3>
+                        <p>This year's festival has received over 240 submissions from filmmakers across 15 countries...</p>
+                        <div class="news-meta">
+                            <span class="read-time">5 min read</span>
+                            <span class="news-date">2 days ago</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-item">
+                    <div class="news-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Interview</span>
+                        <h3>In Conversation with Alexandra Chen</h3>
+                        <p>We sit down with the acclaimed director to discuss her latest film...</p>
+                        <div class="news-meta">
+                            <span class="read-time">8 min read</span>
+                            <span class="news-date">1 week ago</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-item">
+                    <div class="news-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Industry</span>
+                        <h3>The Future of Independent Cinema</h3>
+                        <p>Exploring emerging trends and technologies shaping the industry...</p>
+                        <div class="news-meta">
+                            <span class="read-time">12 min read</span>
+                            <span class="news-date">2 weeks ago</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
 
-.about h2, .features h2 {
-  font-size: 4vw;
-  margin-bottom: 1vh;
-}
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Festival Office</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@waterlinefilmfest.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Cinema Boulevard<br>Los Angeles, CA 90028</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="press">Press & Media</option>
+                            <option value="sponsorship">Sponsorship</option>
+                            <option value="submission">Submission Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-.features ul {
-  list-style: none;
-}
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Waterline Film Festival</h3>
+                    <p>Celebrating the fluid nature of independent cinema</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#submissions">Submit Film</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Waterline Film Festival. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-.features li {
-  font-size: 1.5vw;
-  margin: 1vh 0;
-  position: relative;
-  padding-left: 20px;
-}
-
-.features li::before {
-  content: '\2022';
-  color: #00d2ff;
-  font-size: 2vw;
-  position: absolute;
-  left: 0;
-  top: 0;
-  line-height: 1.5vw;
-}
-
-@keyframes floatText {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 14vw;
-  }
-  .subtitle {
-    font-size: 4vw;
-  }
-  .about h2, .features h2 {
-    font-size: 6vw;
-  }
-  .features li {
-    font-size: 3vw;
-  }
-}
+    <script src="script.js"></script>
+</body>
+</html>
