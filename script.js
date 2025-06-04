@@ -679,6 +679,18 @@ if (process.env.NODE_ENV === 'development') {
     
     monitorPerformance();
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('.nav-constellation');
+    const hamburger = document.querySelector('.hamburger');
+
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            nav.classList.toggle('open');
+        });
+    }
+});
 
 console.log('🎬 WATERLINE Film Festival - Optimized Visual Experience Loaded');
 console.log('🌊 Where Cinema Dissolves Into Art - Now Smoother Than Ever');
