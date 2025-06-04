@@ -50,15 +50,15 @@
     <div class="artistic-cursor" aria-hidden="true"></div>
     <div class="cursor-trail" aria-hidden="true"></div>
 
-    <!-- ARTISTIC LOGO -->
-    <div class="logo-artwork" aria-label="Waterline Festival Logo">WATERLINE</div>
+    <!-- NAVIGATION OVERLAY FOR MOBILE -->
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- OPTIMIZED NAVIGATION -->
-    <nav class="nav-constellation" role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNavLinks">
-            <span class="hamburger-bar bar1"></span>
-            <span class="hamburger-bar bar2"></span>
-            <span class="hamburger-bar bar3"></span>
+    <nav class="nav-constellation" role="navigation" aria-label="Main navigation" id="mainNav">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNavLinks">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
         </button>
         <div class="nav-links" id="mainNavLinks">
             <a href="#home" class="nav-node">Home</a>
@@ -172,54 +172,77 @@
     <script>
         // Hamburger menu logic and nav mobile fixes
         document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger/nav logic
-            const hamburger = document.querySelector('.hamburger');
-            const nav = document.querySelector('.nav-constellation');
-            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            const navLinks = document.getElementById('mainNavLinks');
             const body = document.body;
+            const navOverlay = document.getElementById('navOverlay');
+            let isNavOpen = false;
 
             function closeNav() {
+                if (!isNavOpen) return;
                 nav.classList.remove('open');
                 hamburger.classList.remove('open');
                 hamburger.setAttribute('aria-expanded', 'false');
                 body.classList.remove('nav-open');
+                if (navOverlay) navOverlay.classList.remove('active');
+                isNavOpen = false;
             }
 
             function openNav() {
+                if (isNavOpen) return;
                 nav.classList.add('open');
                 hamburger.classList.add('open');
                 hamburger.setAttribute('aria-expanded', 'true');
                 body.classList.add('nav-open');
+                if (navOverlay) navOverlay.classList.add('active');
+                isNavOpen = true;
             }
 
-            hamburger.addEventListener('click', function(e) {
+            function toggleNav(e) {
+                e.preventDefault();
                 e.stopPropagation();
-                if (nav.classList.contains('open')) {
+                if (isNavOpen) {
                     closeNav();
                 } else {
                     openNav();
                 }
-            });
+            }
 
-            // Close nav when clicking a link (on mobile)
-            navLinks.addEventListener('click', function(e) {
-                if (e.target.classList.contains('nav-node') && window.innerWidth <= 768) {
-                    closeNav();
-                }
-            });
+            // Hamburger click handler
+            if (hamburger) {
+                hamburger.addEventListener('click', toggleNav);
+                hamburger.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    toggleNav(e);
+                });
+            }
 
-            // Close nav on outside click (mobile)
-            document.addEventListener('click', function(e) {
-                if (nav.classList.contains('open') && window.innerWidth <= 768) {
-                    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-                        closeNav();
+            // Overlay click closes nav
+            if (navOverlay) {
+                navOverlay.addEventListener('click', closeNav);
+                navOverlay.addEventListener('touchend', closeNav);
+            }
+
+            // Close nav when clicking a link
+            if (navLinks) {
+                navLinks.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('nav-node')) {
+                        setTimeout(closeNav, 100);
                     }
+                });
+            }
+
+            // Close nav on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isNavOpen) {
+                    closeNav();
                 }
             });
 
             // Close nav on resize to desktop
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
+                if (window.innerWidth > 768 && isNavOpen) {
                     closeNav();
                 }
             });
