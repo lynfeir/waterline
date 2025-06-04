@@ -6,943 +6,80 @@
     <title>WATERLINE | Where Cinema Dissolves Into Art</title>
     <meta name="description" content="Waterline Film Festival - An immersive journey through independent cinema, emerging filmmakers, and the fluid boundaries of visual storytelling">
     <meta name="keywords" content="experimental cinema, film festival, independent filmmakers, visual arts, creative storytelling, avant-garde films, cinema careers, artistic expression">
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Performance optimizations -->
+    <meta name="theme-color" content="#0a0a0a">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --water-blue: #5B8FC7;
-            --liquid-yellow: #F5F2A8;
-            --void-black: #0a0a0a;
-            --ghost-white: #fefefe;
-            --electric-cyan: #00FFFF;
-            --sunset-orange: #FF6B35;
-        }
-
-        * {
-            margin: 0;
+        /* Critical CSS for above-the-fold content */
+        body { 
+            font-family: 'Playfair Display', serif; 
+            background: #0a0a0a; 
+            color: #fefefe; 
+            margin: 0; 
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Playfair Display', serif;
-            background: var(--void-black);
-            color: var(--ghost-white);
             overflow-x: hidden;
-            cursor: none;
         }
-
-        /* ARTISTIC LIQUID BACKGROUND */
-        .liquid-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(91, 143, 199, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(245, 242, 168, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
-                conic-gradient(from 0deg at 50% 50%, 
-                    rgba(91, 143, 199, 0.1) 0deg,
-                    rgba(245, 242, 168, 0.1) 120deg,
-                    rgba(255, 107, 53, 0.1) 240deg,
-                    rgba(91, 143, 199, 0.1) 360deg);
-            animation: liquidFlow 30s ease-in-out infinite;
-            filter: blur(80px);
-        }
-
-        @keyframes liquidFlow {
-            0%, 100% { 
-                transform: rotate(0deg) scale(1);
-                filter: blur(80px) hue-rotate(0deg);
-            }
-            25% { 
-                transform: rotate(90deg) scale(1.1);
-                filter: blur(100px) hue-rotate(90deg);
-            }
-            50% { 
-                transform: rotate(180deg) scale(0.9);
-                filter: blur(60px) hue-rotate(180deg);
-            }
-            75% { 
-                transform: rotate(270deg) scale(1.2);
-                filter: blur(120px) hue-rotate(270deg);
-            }
-        }
-
-        /* ORGANIC SHAPES OVERLAY */
-        .organic-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
-        }
-
-        .morphing-blob {
-            position: absolute;
-            border-radius: 50% 40% 60% 30%;
-            animation: morphBlob 20s ease-in-out infinite;
-            filter: blur(2px);
-        }
-
-        .blob-1 {
-            width: 300px;
-            height: 400px;
-            background: linear-gradient(45deg, rgba(91, 143, 199, 0.3), rgba(245, 242, 168, 0.2));
-            top: 10%;
-            left: 70%;
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            width: 250px;
-            height: 350px;
-            background: linear-gradient(135deg, rgba(245, 242, 168, 0.25), rgba(0, 255, 255, 0.2));
-            top: 60%;
-            left: 10%;
-            animation-delay: 7s;
-        }
-
-        .blob-3 {
-            width: 200px;
-            height: 280px;
-            background: linear-gradient(225deg, rgba(255, 107, 53, 0.2), rgba(91, 143, 199, 0.3));
-            top: 30%;
-            left: 30%;
-            animation-delay: 14s;
-        }
-
-        @keyframes morphBlob {
-            0%, 100% {
-                border-radius: 50% 40% 60% 30%;
-                transform: rotate(0deg) scale(1);
-            }
-            25% {
-                border-radius: 30% 60% 40% 70%;
-                transform: rotate(90deg) scale(1.1);
-            }
-            50% {
-                border-radius: 60% 30% 70% 40%;
-                transform: rotate(180deg) scale(0.9);
-            }
-            75% {
-                border-radius: 40% 70% 30% 60%;
-                transform: rotate(270deg) scale(1.2);
-            }
-        }
-
-        /* EXPERIMENTAL NAVIGATION */
-        .nav-constellation {
-            position: fixed;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: flex;
-            gap: 60px;
-            background: rgba(10, 10, 10, 0.3);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(91, 143, 199, 0.3);
-            border-radius: 100px;
-            padding: 20px 40px;
-        }
-
-        .nav-node {
-            position: relative;
-            color: var(--ghost-white);
-            text-decoration: none;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .nav-node::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, var(--water-blue), var(--liquid-yellow));
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-            z-index: -1;
-        }
-
-        .nav-node:hover::before {
-            width: 120px;
-            height: 120px;
-        }
-
-        .nav-node:hover {
-            color: var(--void-black);
-            transform: scale(1.1);
-        }
-
-        /* ARTISTIC LOGO */
-        .logo-artwork {
-            position: fixed;
-            top: 50px;
-            left: 50px;
-            z-index: 1001;
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            font-style: italic;
-            writing-mode: vertical-lr;
-            text-orientation: mixed;
-            background: linear-gradient(180deg, 
-                var(--water-blue) 0%,
-                var(--liquid-yellow) 50%,
-                var(--electric-cyan) 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: logoFlow 8s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(91, 143, 199, 0.5));
-        }
-
-        @keyframes logoFlow {
-            0%, 100% { background-position: 0% 0%; }
-            50% { background-position: 0% 100%; }
-        }
-
-        /* HERO SECTION - EXPERIMENTAL */
-        .hero-canvas {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-title {
-            font-size: clamp(4rem, 12vw, 12rem);
-            font-weight: 900;
-            text-align: center;
-            line-height: 0.8;
-            position: relative;
-            z-index: 10;
-        }
-
-        .title-water {
-            display: block;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                var(--water-blue) 25%,
-                var(--liquid-yellow) 50%,
-                var(--electric-cyan) 75%,
-                transparent 100%);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: titleWave 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(91, 143, 199, 0.8));
-        }
-
-        .title-line {
-            display: block;
-            color: var(--liquid-yellow);
-            font-style: italic;
-            margin-top: -20px;
-            filter: drop-shadow(0 0 20px rgba(245, 242, 168, 0.6));
-            animation: titleGlow 6s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleWave {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes titleGlow {
-            0% { filter: drop-shadow(0 0 20px rgba(245, 242, 168, 0.6)); }
-            100% { filter: drop-shadow(0 0 40px rgba(245, 242, 168, 1)); }
-        }
-
-        .hero-subtitle {
-            position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Space Mono', monospace;
-            font-size: 1.2rem;
-            text-align: center;
-            max-width: 600px;
-            opacity: 0.8;
-            animation: subtitleFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes subtitleFloat {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* FLOATING SUBMISSION COUNTER */
-        .counter-artifact {
-            position: fixed;
-            top: 50%;
-            right: -100px;
-            transform: translateY(-50%) rotate(-90deg);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            background: rgba(91, 143, 199, 0.1);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--water-blue);
-            border-radius: 50px;
-            padding: 20px 40px;
-            z-index: 100;
-            transition: all 0.5s ease;
-        }
-
-        .counter-artifact:hover {
-            right: -50px;
-            background: rgba(91, 143, 199, 0.2);
-            box-shadow: 0 0 40px rgba(91, 143, 199, 0.5);
-        }
-
-        .counter-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--liquid-yellow);
-            display: inline-block;
-            animation: counterPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes counterPulse {
-            0%, 100% { transform: scale(1); color: var(--liquid-yellow); }
-            50% { transform: scale(1.2); color: var(--electric-cyan); }
-        }
-
-        /* SECTIONS WITH ARTISTIC LAYOUTS */
-        .section-canvas {
-            min-height: 100vh;
-            padding: 100px 50px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            font-style: italic;
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-            background: linear-gradient(45deg, var(--water-blue), var(--liquid-yellow), var(--electric-cyan));
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: sectionTitleShift 10s ease-in-out infinite;
-        }
-
-        @keyframes sectionTitleShift {
-            0%, 100% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 50% 100%; }
-            75% { background-position: 50% 0%; }
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            width: 100px;
-            height: 4px;
-            background: var(--water-blue);
-            transform: translateX(-50%);
-            border-radius: 2px;
-            animation: underlineGrow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes underlineGrow {
-            0% { width: 100px; }
-            100% { width: 200px; }
-        }
-
-        /* ABOUT SECTION - CINEMATIC COMPOSITION */
-        .vision-masterpiece {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .vision-intro {
-            text-align: center;
-            margin-bottom: 80px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .vision-intro p {
-            font-size: 1.4rem;
-            line-height: 1.9;
-            color: rgba(245, 242, 168, 0.9);
-            font-style: italic;
-            position: relative;
-            padding: 40px;
-            background: rgba(91, 143, 199, 0.03);
-            border-radius: 30px;
-            border: 1px solid rgba(91, 143, 199, 0.2);
-            backdrop-filter: blur(20px);
-        }
-
-        .vision-intro p::before {
-            content: '"';
-            font-size: 6rem;
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            color: var(--water-blue);
-            opacity: 0.3;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .vision-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .vision-card {
-            background: linear-gradient(135deg, 
-                rgba(91, 143, 199, 0.08) 0%,
-                rgba(245, 242, 168, 0.05) 50%,
-                rgba(0, 255, 255, 0.03) 100%);
-            border: 2px solid transparent;
-            border-radius: 40px;
-            padding: 60px 50px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            backdrop-filter: blur(30px);
-        }
-
-        .vision-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                var(--water-blue), 
-                var(--liquid-yellow), 
-                var(--electric-cyan), 
-                var(--sunset-orange));
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: -1;
-            border-radius: 40px;
-        }
-
-        .vision-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .vision-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--water-blue);
-            box-shadow: 
-                0 25px 50px rgba(91, 143, 199, 0.25),
-                0 0 100px rgba(91, 143, 199, 0.1);
-        }
-
-        .vision-card:nth-child(1) {
-            transform: rotate(-1deg);
-        }
-
-        .vision-card:nth-child(2) {
-            transform: rotate(1deg);
-            margin-top: 40px;
-        }
-
-        .vision-card:nth-child(1):hover {
-            transform: translateY(-15px) scale(1.02) rotate(0deg);
-        }
-
-        .vision-card:nth-child(2):hover {
-            transform: translateY(-15px) scale(1.02) rotate(0deg);
-        }
-
-        .vision-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--water-blue), var(--liquid-yellow));
-            border-radius: 50% 30% 50% 30%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            animation: iconMorph 8s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(91, 143, 199, 0.3);
-        }
-
-        @keyframes iconMorph {
-            0%, 100% { 
-                border-radius: 50% 30% 50% 30%;
-                transform: rotate(0deg);
-            }
-            50% { 
-                border-radius: 30% 50% 30% 50%;
-                transform: rotate(180deg);
-            }
-        }
-
-        .vision-card h3 {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--liquid-yellow);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .vision-card p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .vision-showcase {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .showcase-text {
-            background: rgba(10, 10, 10, 0.6);
-            border-radius: 40px;
-            padding: 80px 60px;
-            border: 1px solid rgba(91, 143, 199, 0.2);
-            backdrop-filter: blur(20px);
-            position: relative;
-        }
-
-        .showcase-text::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--water-blue), 
-                var(--liquid-yellow), 
-                var(--electric-cyan));
-            border-radius: 42px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .showcase-text:hover::after {
-            opacity: 0.3;
-        }
-
-        .showcase-text h3 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            font-style: italic;
-            background: linear-gradient(90deg, var(--water-blue), var(--liquid-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
-        }
-
-        .showcase-text p {
-            font-size: 1.3rem;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .vision-art-piece {
-            position: relative;
-            height: 500px;
-            background: linear-gradient(135deg, 
-                var(--water-blue) 0%,
-                var(--liquid-yellow) 30%,
-                var(--electric-cyan) 60%,
-                var(--sunset-orange) 100%);
-            border-radius: 60% 40% 50% 70%;
-            animation: artPieceFlow 15s ease-in-out infinite;
-            overflow: hidden;
-            box-shadow: 
-                0 20px 60px rgba(91, 143, 199, 0.4),
-                inset 0 0 100px rgba(255, 255, 255, 0.1);
-        }
-
-        @keyframes artPieceFlow {
-            0%, 100% { 
-                border-radius: 60% 40% 50% 70%;
-                transform: rotate(0deg);
-                background-size: 100% 100%;
-            }
-            25% { 
-                border-radius: 40% 60% 30% 80%;
-                transform: rotate(90deg);
-                background-size: 120% 120%;
-            }
-            50% { 
-                border-radius: 70% 30% 60% 40%;
-                transform: rotate(180deg);
-                background-size: 80% 80%;
-            }
-            75% { 
-                border-radius: 30% 70% 40% 60%;
-                transform: rotate(270deg);
-                background-size: 110% 110%;
-            }
-        }
-
-        .vision-art-piece::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            width: 60%;
-            height: 60%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: innerGlow 10s ease-in-out infinite alternate;
-        }
-
-        @keyframes innerGlow {
-            0% { 
-                transform: scale(1) translate(0, 0);
-                opacity: 0.1;
-            }
-            100% { 
-                transform: scale(1.5) translate(20px, -20px);
-                opacity: 0.3;
-            }
-        }
-
-        /* FILMMAKER SPOTLIGHT - ARTISTIC GRID */
-        .filmmaker-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .filmmaker-portrait {
-            position: relative;
-            background: rgba(10, 10, 10, 0.8);
-            border-radius: 30px;
-            padding: 50px 30px;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 2px solid transparent;
-            overflow: hidden;
-        }
-
-        .filmmaker-portrait::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--water-blue), var(--liquid-yellow), var(--electric-cyan));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: -1;
-            border-radius: 30px;
-        }
-
-        .filmmaker-portrait:hover::before {
-            opacity: 0.1;
-        }
-
-        .filmmaker-portrait:hover {
-            transform: translateY(-20px) rotate(2deg);
-            border-color: var(--water-blue);
-            box-shadow: 0 30px 60px rgba(91, 143, 199, 0.3);
-        }
-
-        .filmmaker-portrait:nth-child(2) {
-            transform: translateY(40px);
-        }
-
-        .filmmaker-portrait:nth-child(2):hover {
-            transform: translateY(20px) rotate(-2deg);
-        }
-
-        .filmmaker-name {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--liquid-yellow);
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .film-title {
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            color: var(--water-blue);
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .filmmaker-bio {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-        }
-
-        /* CONTACT SECTION - EXPERIMENTAL FORM */
-        .contact-laboratory {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 40px;
-            margin-top: 60px;
-            padding: 60px;
-            background: rgba(91, 143, 199, 0.03);
-            border: 1px solid rgba(91, 143, 199, 0.2);
-            border-radius: 40px;
-            backdrop-filter: blur(20px);
-        }
-
-        .form-constellation {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .input-field {
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(91, 143, 199, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            color: var(--ghost-white);
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            transition: all 0.5s ease;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--water-blue);
-            background: rgba(91, 143, 199, 0.1);
-            box-shadow: 0 0 30px rgba(91, 143, 199, 0.3);
-            transform: scale(1.02);
-        }
-
-        .message-field {
-            grid-column: 1 / -1;
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-artifact {
-            grid-column: 1 / -1;
-            background: linear-gradient(45deg, var(--water-blue), var(--liquid-yellow));
-            border: none;
-            border-radius: 25px;
-            padding: 20px 50px;
-            color: var(--void-black);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-artifact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .submit-artifact:hover::before {
-            left: 100%;
-        }
-
-        .submit-artifact:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(91, 143, 199, 0.4);
-        }
-
-        /* CUSTOM CURSOR */
-        .artistic-cursor {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--water-blue);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            background: radial-gradient(circle, var(--liquid-yellow) 0%, transparent 70%);
-            opacity: 0.7;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--electric-cyan);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.6;
-        }
-
-        /* FLOATING ELEMENTS */
-        .floating-symbols {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .symbol {
-            position: absolute;
-            font-size: 2rem;
-            color: var(--water-blue);
-            opacity: 0.3;
-            animation: floatSymbol 15s linear infinite;
-        }
-
-        @keyframes floatSymbol {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            .nav-constellation {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
-            }
-            
-            .about-collage {
-                grid-template-columns: 1fr;
-                transform: rotate(0deg);
-            }
-            
-            .filmmaker-gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-constellation {
-                grid-template-columns: 1fr;
-            }
-            
-            .counter-artifact {
-                position: static;
-                transform: none;
-                margin: 20px auto;
-                display: block;
-                text-align: center;
-            }
-        }
-
-        /* SCROLL ANIMATIONS */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-canvas { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
     </style>
 </head>
 <body>
-    <!-- ARTISTIC BACKGROUND LAYERS -->
-    <div class="liquid-canvas"></div>
-    <div class="organic-layer">
+    <!-- PERFORMANCE OPTIMIZED BACKGROUND LAYERS -->
+    <div class="liquid-canvas" aria-hidden="true"></div>
+    <div class="organic-layer" aria-hidden="true">
         <div class="morphing-blob blob-1"></div>
         <div class="morphing-blob blob-2"></div>
         <div class="morphing-blob blob-3"></div>
     </div>
 
     <!-- FLOATING SYMBOLS -->
-    <div class="floating-symbols" id="symbolsContainer"></div>
+    <div class="floating-symbols" id="symbolsContainer" aria-hidden="true"></div>
 
     <!-- CUSTOM CURSOR -->
-    <div class="artistic-cursor"></div>
-    <div class="cursor-trail"></div>
+    <div class="artistic-cursor" aria-hidden="true"></div>
+    <div class="cursor-trail" aria-hidden="true"></div>
 
     <!-- ARTISTIC LOGO -->
-    <div class="logo-artwork">WATERLINE</div>
+    <div class="logo-artwork" aria-label="Waterline Festival Logo">WATERLINE</div>
 
-    <!-- EXPERIMENTAL NAVIGATION -->
-    <nav class="nav-constellation">
-        <a href="#home" class="nav-node">Home</a>
-        <a href="#about" class="nav-node">Vision</a>
-        <a href="#spotlight" class="nav-node">Artists</a>
-        <a href="#contact" class="nav-node">Connect</a>
+    <!-- OPTIMIZED NAVIGATION -->
+    <nav class="nav-constellation" role="navigation" aria-label="Main navigation">
+        <a href="#home" class="nav-node" aria-label="Go to home section">Home</a>
+        <a href="#about" class="nav-node" aria-label="Go to vision section">Vision</a>
+        <a href="#spotlight" class="nav-node" aria-label="Go to artists section">Artists</a>
+        <a href="#contact" class="nav-node" aria-label="Go to contact section">Connect</a>
     </nav>
 
     <!-- FLOATING COUNTER -->
-    <div class="counter-artifact">
-        <span class="counter-number" id="submissionCount">287</span>
-        SUBMISSIONS
+    <div class="counter-artifact" aria-label="Submission counter">
+        <span class="counter-number" id="submissionCount" aria-live="polite">0</span>
+        <span aria-hidden="true">SUBMISSIONS</span>
     </div>
 
     <!-- HERO CANVAS -->
-    <section id="home" class="hero-canvas">
+    <section id="home" class="hero-canvas" role="banner">
         <h1 class="hero-title">
             <span class="title-water">WATER</span>
             <span class="title-line">LINE</span>
         </h1>
-        <div class="hero-subtitle">
+        <div class="hero-subtitle" role="doc-subtitle">
             Where Independent Cinema Dissolves Into Pure Artistic Expression
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="section-canvas reveal">
+    <section id="about" class="section-canvas reveal" role="main">
         <div class="vision-masterpiece">
             <h2 class="section-title">Our Vision</h2>
             
@@ -951,17 +88,17 @@
             </div>
             
             <div class="vision-gallery">
-                <div class="vision-card">
-                    <div class="vision-icon">🎬</div>
+                <article class="vision-card">
+                    <div class="vision-icon" aria-hidden="true">🎬</div>
                     <h3>Experimental Cinema</h3>
                     <p>Our festival is not just a screening—it's a laboratory of creativity, a space where emerging voices can experiment with the language of cinema. We believe that the most powerful films are those that flow like water, adapting to new forms while maintaining their essential artistic truth.</p>
-                </div>
+                </article>
                 
-                <div class="vision-card">
-                    <div class="vision-icon">🌊</div>
+                <article class="vision-card">
+                    <div class="vision-icon" aria-hidden="true">🌊</div>
                     <h3>Fluid Storytelling</h3>
                     <p>Join us in supporting a new generation of filmmakers who understand that cinema is not just entertainment—it's a living, breathing art form that can reshape perception and challenge reality itself.</p>
-                </div>
+                </article>
             </div>
             
             <div class="vision-showcase">
@@ -970,7 +107,7 @@
                     <p>We curate experiences that challenge the conventional boundaries of filmmaking. Each selected work represents a bold step into uncharted creative territories, where technical innovation serves artistic vision and storytelling transcends traditional formats.</p>
                 </div>
                 
-                <div class="vision-art-piece"></div>
+                <div class="vision-art-piece" aria-hidden="true"></div>
             </div>
         </div>
     </section>
@@ -980,23 +117,23 @@
         <div style="width: 100%;">
             <h2 class="section-title">Featured Artists</h2>
             <div class="filmmaker-gallery">
-                <div class="filmmaker-portrait">
+                <article class="filmmaker-portrait">
                     <h3 class="filmmaker-name">Zara Chen</h3>
                     <h4 class="film-title">LIQUID MEMORIES</h4>
                     <p class="filmmaker-bio">A multimedia artist who explores the fluidity of memory through experimental documentary techniques. Zara's work blends reality with digital manipulation, creating dreamlike narratives that question the nature of truth in modern media.</p>
-                </div>
+                </article>
                 
-                <div class="filmmaker-portrait">
+                <article class="filmmaker-portrait">
                     <h3 class="filmmaker-name">Marcus Rivera</h3>
                     <h4 class="film-title">CHROME REFLECTIONS</h4>
                     <p class="filmmaker-bio">Former street artist turned filmmaker, Marcus creates visceral urban narratives that capture the raw energy of city life. His films are painted with light, using innovative cinematography to transform concrete landscapes into abstract art.</p>
-                </div>
+                </article>
                 
-                <div class="filmmaker-portrait">
+                <article class="filmmaker-portrait">
                     <h3 class="filmmaker-name">Indira Patel</h3>
                     <h4 class="film-title">BETWEEN BREATHS</h4>
                     <p class="filmmaker-bio">A poet of cinema who specializes in intimate character studies. Indira's films explore the spaces between words, the pauses between breaths, finding profound beauty in the smallest human moments and transforming them into cinematic poetry.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -1009,494 +146,38 @@
                 Ready to dissolve the boundaries between cinema and art? Submit your work to Waterline Film Festival and become part of a movement that's redefining visual storytelling.
             </p>
             
-            <form class="contact-form">
+            <form class="contact-form" role="form" aria-label="Contact form">
                 <div class="form-constellation">
-                    <input type="text" class="input-field" placeholder="Artist Name" required>
-                    <input type="email" class="input-field" placeholder="Email Portal" required>
+                    <input type="text" class="input-field" placeholder="Artist Name" required aria-label="Enter your artist name">
+                    <input type="email" class="input-field" placeholder="Email Portal" required aria-label="Enter your email address">
                 </div>
                 <div class="form-constellation">
-                    <input type="text" class="input-field" placeholder="Film Title">
-                    <input type="text" class="input-field" placeholder="Creative Role">
+                    <input type="text" class="input-field" placeholder="Film Title" aria-label="Enter your film title">
+                    <input type="text" class="input-field" placeholder="Creative Role" aria-label="Enter your creative role">
                 </div>
-                <textarea class="input-field message-field" placeholder="Describe your artistic vision..." required></textarea>
+                <textarea class="input-field message-field" placeholder="Describe your artistic vision..." required aria-label="Describe your artistic vision"></textarea>
                 <button type="submit" class="submit-artifact">TRANSMIT MESSAGE</button>
             </form>
         </div>
     </section>
 
+    <!-- OPTIMIZED SCRIPT LOADING -->
     <script>
-        // CUSTOM CURSOR SYSTEM
-        const cursor = document.querySelector('.artistic-cursor');
-        const cursorTrail = document.querySelector('.cursor-trail');
-        let mouseX = 0, mouseY = 0;
-        let trailX = 0, trailY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        // Reduce layout thrashing with passive event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load main script after DOM is ready
+            const script = document.createElement('script');
+            script.src = 'script.js';
+            script.async = true;
+            document.body.appendChild(script);
         });
-
-        function animateCursor() {
-            cursor.style.left = mouseX - 20 + 'px';
-            cursor.style.top = mouseY - 20 + 'px';
-            
-           trailX += (mouseX - trailX) * 0.1;
-            trailY += (mouseY - trailY) * 0.1;
-            cursorTrail.style.left = trailX - 4 + 'px';
-            cursorTrail.style.top = trailY - 4 + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // HOVER EFFECTS FOR CURSOR
-        const interactiveElements = document.querySelectorAll('a, button, .filmmaker-portrait, .input-field');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursor.style.background = 'radial-gradient(circle, var(--electric-cyan) 0%, transparent 70%)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = 'radial-gradient(circle, var(--liquid-yellow) 0%, transparent 70%)';
-            });
-        });
-
-        // FLOATING SYMBOLS SYSTEM
-        const symbols = ['◊', '◈', '◇', '◉', '◎', '◐', '◑', '◒', '◓', '⬟', '⬢', '⬡', '⟐', '⟑', '⟒', '⟓'];
-        const symbolsContainer = document.getElementById('symbolsContainer');
-
-        function createFloatingSymbol() {
-            const symbol = document.createElement('div');
-            symbol.className = 'symbol';
-            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            symbol.style.left = Math.random() * 100 + '%';
-            symbol.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            symbol.style.animationDelay = Math.random() * 5 + 's';
-            symbolsContainer.appendChild(symbol);
-
-            setTimeout(() => {
-                symbol.remove();
-            }, 20000);
-        }
-
-        // Create symbols periodically
-        setInterval(createFloatingSymbol, 3000);
-
-        // SUBMISSION COUNTER ANIMATION
-        const counter = document.getElementById('submissionCount');
-        let currentCount = 0;
-        const targetCount = 287;
-
-        function animateCounter() {
-            if (currentCount < targetCount) {
-                currentCount += Math.ceil((targetCount - currentCount) * 0.1);
-                counter.textContent = currentCount;
-                requestAnimationFrame(animateCounter);
-            }
-        }
-
-        // Start counter animation when page loads
-        setTimeout(animateCounter, 2000);
-
-        // SCROLL REVEAL ANIMATIONS
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // SMOOTH SCROLLING FOR NAVIGATION
-        document.querySelectorAll('.nav-node').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // DYNAMIC BACKGROUND INTERACTION
-        document.addEventListener('mousemove', (e) => {
-            const blobs = document.querySelectorAll('.morphing-blob');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            blobs.forEach((blob, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = mouseX * 30 * speed;
-                const y = mouseY * 30 * speed;
-                
-                blob.style.transform += ` translate(${x}px, ${y}px)`;
-            });
-        });
-
-        // FORM ENHANCEMENT
-        const form = document.querySelector('.contact-form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Create success animation
-            const submitBtn = form.querySelector('.submit-artifact');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'TRANSMITTING...';
-            submitBtn.style.background = 'linear-gradient(45deg, var(--electric-cyan), var(--water-blue))';
-            
-            setTimeout(() => {
-                submitBtn.textContent = 'MESSAGE SENT ✨';
-                submitBtn.style.background = 'linear-gradient(45deg, #00ff00, #00aa00)';
-                
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = 'linear-gradient(45deg, var(--water-blue), var(--liquid-yellow))';
-                    form.reset();
-                }, 2000);
-            }, 1500);
-        });
-
-        // ADVANCED VISUAL EFFECTS
         
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.hero-title, .hero-subtitle');
-            
-            parallaxElements.forEach((el, index) => {
-                const speed = (index + 1) * 0.5;
-                el.style.transform = `translateY(${scrolled * speed}px)`;
+        // Preload critical resources
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() {
+                // Preload images or other resources here if needed
             });
-        });
-
-        // Color-shifting effect based on scroll position
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
-            const hue = scrollPercent * 360;
-            
-            document.documentElement.style.setProperty('--dynamic-hue', hue + 'deg');
-            document.querySelector('.liquid-canvas').style.filter = `blur(80px) hue-rotate(${hue}deg)`;
-        });
-
-        // Interactive filmmaker portraits
-        document.querySelectorAll('.filmmaker-portrait').forEach(portrait => {
-            portrait.addEventListener('mouseenter', () => {
-                // Add ripple effect
-                const ripple = document.createElement('div');
-                ripple.style.cssText = `
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 0;
-                    height: 0;
-                    background: radial-gradient(circle, rgba(91, 143, 199, 0.3), transparent);
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%);
-                    animation: rippleEffect 1s ease-out;
-                    pointer-events: none;
-                    z-index: 10;
-                `;
-                
-                portrait.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 1000);
-            });
-        });
-
-        // Add ripple animation
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes rippleEffect {
-                0% {
-                    width: 0;
-                    height: 0;
-                    opacity: 1;
-                }
-                100% {
-                    width: 300px;
-                    height: 300px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
-
-        // AUDIO VISUALIZATION EFFECT (Visual only)
-        function createAudioVisualization() {
-            const visualizer = document.createElement('div');
-            visualizer.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                width: 200px;
-                height: 60px;
-                display: flex;
-                align-items: flex-end;
-                gap: 2px;
-                z-index: 1000;
-                opacity: 0.7;
-            `;
-            
-            for (let i = 0; i < 20; i++) {
-                const bar = document.createElement('div');
-                bar.style.cssText = `
-                    width: 8px;
-                    background: linear-gradient(to top, var(--water-blue), var(--liquid-yellow));
-                    border-radius: 4px 4px 0 0;
-                    animation: audioBar ${Math.random() * 2 + 1}s ease-in-out infinite alternate;
-                    animation-delay: ${Math.random() * 2}s;
-                `;
-                visualizer.appendChild(bar);
-            }
-            
-            document.body.appendChild(visualizer);
         }
-
-        // Add audio bar animation
-        const audioStyle = document.createElement('style');
-        audioStyle.textContent = `
-            @keyframes audioBar {
-                0% { height: 5px; }
-                100% { height: ${Math.random() * 50 + 10}px; }
-            }
-        `;
-        document.head.appendChild(audioStyle);
-        
-        createAudioVisualization();
-
-        // PARTICLE SYSTEM
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.life = 100;
-                this.maxLife = 100;
-                this.size = Math.random() * 3 + 1;
-                this.color = `hsl(${Math.random() * 60 + 180}, 70%, 60%)`;
-            }
-            
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.life--;
-                this.vy += 0.1; // gravity
-            }
-            
-            draw(ctx) {
-                const alpha = this.life / this.maxLife;
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            
-            isDead() {
-                return this.life <= 0;
-            }
-        }
-
-        // Create canvas for particles
-        const canvas = document.createElement('canvas');
-        canvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        `;
-        document.body.appendChild(canvas);
-
-        const ctx = canvas.getContext('2d');
-        const particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Create particles on click
-        document.addEventListener('click', (e) => {
-            for (let i = 0; i < 15; i++) {
-                particles.push(new Particle(e.clientX, e.clientY));
-            }
-        });
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = particles.length - 1; i >= 0; i--) {
-                const particle = particles[i];
-                particle.update();
-                particle.draw(ctx);
-                
-                if (particle.isDead()) {
-                    particles.splice(i, 1);
-                }
-            }
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        animateParticles();
-
-        // LOADING SCREEN DISSOLUTION
-        function createLoadingScreen() {
-            const loader = document.createElement('div');
-            loader.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--void-black);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                transition: opacity 2s ease, transform 2s ease;
-            `;
-            
-            loader.innerHTML = `
-                <div style="
-                    font-family: 'Playfair Display', serif;
-                    font-size: 4rem;
-                    font-weight: 900;
-                    font-style: italic;
-                    background: linear-gradient(45deg, var(--water-blue), var(--liquid-yellow), var(--electric-cyan));
-                    background-size: 400% 400%;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    animation: logoFlow 2s ease-in-out infinite;
-                    text-align: center;
-                ">
-                    WATERLINE<br>
-                    <span style="font-size: 1.5rem; opacity: 0.8;">Loading Visual Experience...</span>
-                </div>
-            `;
-            
-            document.body.appendChild(loader);
-            
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.transform = 'scale(1.5)';
-                setTimeout(() => loader.remove(), 2000);
-            }, 3000);
-        }
-
-        // Initialize loading screen
-        createLoadingScreen();
-
-        // EXPERIMENTAL GLITCH EFFECTS
-        function addGlitchEffect() {
-            const glitchStyle = document.createElement('style');
-            glitchStyle.textContent = `
-                .glitch {
-                    position: relative;
-                    animation: glitch 2s infinite;
-                }
-                
-                .glitch::before,
-                .glitch::after {
-                    content: attr(data-text);
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-                
-                .glitch::before {
-                    animation: glitchTop 2s infinite;
-                    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-                }
-                
-                .glitch::after {
-                    animation: glitchBottom 1.5s infinite;
-                    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-                }
-                
-                @keyframes glitch {
-                    2%, 64% {
-                        transform: translate(2px, 0) skew(0deg);
-                    }
-                    4%, 60% {
-                        transform: translate(-2px, 0) skew(0deg);
-                    }
-                    62% {
-                        transform: translate(0, 0) skew(5deg);
-                    }
-                }
-                
-                @keyframes glitchTop {
-                    2%, 64% {
-                        transform: translate(2px, -2px);
-                        color: var(--electric-cyan);
-                    }
-                    4%, 60% {
-                        transform: translate(-2px, 2px);
-                        color: var(--sunset-orange);
-                    }
-                    62% {
-                        transform: translate(13px, -1px) skew(-13deg);
-                    }
-                }
-                
-                @keyframes glitchBottom {
-                    2%, 64% {
-                        transform: translate(-2px, 0);
-                        color: var(--sunset-orange);
-                    }
-                    4%, 60% {
-                        transform: translate(-2px, 0);
-                        color: var(--electric-cyan);
-                    }
-                    62% {
-                        transform: translate(-22px, 5px) skew(21deg);
-                    }
-                }
-            `;
-            document.head.appendChild(glitchStyle);
-        }
-
-        addGlitchEffect();
-
-        // Apply glitch effect to hero title occasionally
-        setInterval(() => {
-            const heroTitle = document.querySelector('.hero-title');
-            heroTitle.classList.add('glitch');
-            heroTitle.setAttribute('data-text', 'WATERLINE');
-            
-            setTimeout(() => {
-                heroTitle.classList.remove('glitch');
-            }, 2000);
-        }, 15000);
-
-        console.log('🎬 WATERLINE Film Festival - Visual Experience Loaded');
-        console.log('🌊 Where Cinema Dissolves Into Art');
     </script>
 </body>
 </html>
