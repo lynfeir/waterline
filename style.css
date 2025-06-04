@@ -147,6 +147,15 @@ body {
     border-radius: 100px;
     padding: 20px 40px;
     will-change: transform;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    width: auto;
 }
 
 .nav-node {
@@ -187,34 +196,147 @@ body {
     transform: scale(1.1);
 }
 
-/* ARTISTIC LOGO - OPTIMIZED */
-.logo-artwork {
-    position: fixed;
-    top: 50px;
-    left: 50px;
-    z-index: 1001;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    font-style: italic;
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
-    background: linear-gradient(180deg, 
-        var(--water-blue) 0%,
-        var(--liquid-yellow) 50%,
-        var(--electric-cyan) 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: logoFlow 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(91, 143, 199, 0.5));
-    will-change: background-position;
+@media (max-width: 768px) {
+    .nav-constellation {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        padding: 0 0 20px 0;
+        background: rgba(10, 10, 10, 0.95);
+        border-radius: 0 0 30px 30px;
+        z-index: 2000;
+        gap: 0;
+        border: none;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .nav-constellation:not(.open) {
+        transform: translateY(-120%);
+        pointer-events: none;
+    }
+    .nav-constellation.open {
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .hamburger {
+        display: flex;
+        position: fixed;
+        top: 20px;
+        right: 24px;
+        z-index: 2100;
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0;
+    }
 }
 
-@keyframes logoFlow {
-    0%, 100% { background-position: 0% 0%; }
-    50% { background-position: 0% 100%; }
+/* Hamburger styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2100;
+}
+
+.hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--ghost-white);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* Hamburger open/close animation */
+.hamburger.open .bar1 {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger.open .bar2 {
+    opacity: 0;
+}
+.hamburger.open .bar3 {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* NAVIGATION STRUCTURE FIXES */
+.nav-constellation {
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .nav-constellation {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        padding: 0 0 20px 0;
+        background: rgba(10, 10, 10, 0.95);
+        border-radius: 0 0 30px 30px;
+        z-index: 2000;
+        gap: 0;
+        border: none;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .nav-constellation:not(.open) {
+        transform: translateY(-120%);
+        pointer-events: none;
+    }
+    .nav-constellation.open {
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .hamburger {
+        display: flex;
+        position: fixed;
+        top: 20px;
+        right: 24px;
+        z-index: 2100;
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0;
+    }
 }
 
 /* HERO SECTION - EXPERIMENTAL - OPTIMIZED */
@@ -1069,54 +1191,5 @@ body {
     .nav-node,
     .submit-artifact {
         transform: translate3d(0, 0, 0);
-    }
-}
-/* Hamburger styles */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.hamburger-bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--ghost-white);
-    border-radius: 2px;
-}
-
-/* Responsive nav styles */
-@media (max-width: 768px) {
-    .nav-constellation {
-        flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        padding-top: 60px;
-    }
-
-    .hamburger {
-        display: flex;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nav-constellation.open .nav-links {
-        display: flex;
     }
 }

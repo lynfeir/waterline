@@ -653,6 +653,62 @@ if (!prefersReducedMotion) {
     }, glitchInterval);
 }
 
+// --- HAMBURGER MENU & NAVIGATION FIXES ---
+(function() {
+    const nav = document.querySelector('.nav-constellation');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+
+    function closeNav() {
+        nav.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        body.classList.remove('nav-open');
+    }
+
+    function openNav() {
+        nav.classList.add('open');
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        body.classList.add('nav-open');
+    }
+
+    if (hamburger && nav && navLinks) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (nav.classList.contains('open')) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        });
+
+        // Close nav when clicking a link (on mobile)
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-node') && window.innerWidth <= 768) {
+                closeNav();
+            }
+        });
+
+        // Close nav on outside click (mobile)
+        document.addEventListener('click', function(e) {
+            if (nav.classList.contains('open') && window.innerWidth <= 768) {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    closeNav();
+                }
+            }
+        });
+
+        // Close nav on resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    }
+})();
+
 // CLEANUP ON PAGE UNLOAD
 window.addEventListener('beforeunload', () => {
     animationManager.stop();
@@ -679,18 +735,5 @@ if (process.env.NODE_ENV === 'development') {
     
     monitorPerformance();
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const nav = document.querySelector('.nav-constellation');
-    const hamburger = document.querySelector('.hamburger');
-
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-            nav.classList.toggle('open');
-        });
-    }
-});
-
 console.log('🎬 WATERLINE Film Festival - Optimized Visual Experience Loaded');
 console.log('🌊 Where Cinema Dissolves Into Art - Now Smoother Than Ever');

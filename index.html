@@ -55,18 +55,17 @@
 
     <!-- OPTIMIZED NAVIGATION -->
     <nav class="nav-constellation" role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-</button>
-<div class="nav-links">
-  <a href="#home" class="nav-node">Home</a>
-  <a href="#about" class="nav-node">Vision</a>
-  <a href="#spotlight" class="nav-node">Artists</a>
-  <a href="#contact" class="nav-node">Connect</a>
-</div>
-
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNavLinks">
+            <span class="hamburger-bar bar1"></span>
+            <span class="hamburger-bar bar2"></span>
+            <span class="hamburger-bar bar3"></span>
+        </button>
+        <div class="nav-links" id="mainNavLinks">
+            <a href="#home" class="nav-node">Home</a>
+            <a href="#about" class="nav-node">Vision</a>
+            <a href="#spotlight" class="nav-node">Artists</a>
+            <a href="#contact" class="nav-node">Connect</a>
+        </div>
     </nav>
 
     <!-- FLOATING COUNTER -->
@@ -171,15 +170,67 @@
 
     <!-- OPTIMIZED SCRIPT LOADING -->
     <script>
-        // Reduce layout thrashing with passive event listeners
+        // Hamburger menu logic and nav mobile fixes
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger/nav logic
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav-constellation');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+
+            function closeNav() {
+                nav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                body.classList.remove('nav-open');
+            }
+
+            function openNav() {
+                nav.classList.add('open');
+                hamburger.classList.add('open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                body.classList.add('nav-open');
+            }
+
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (nav.classList.contains('open')) {
+                    closeNav();
+                } else {
+                    openNav();
+                }
+            });
+
+            // Close nav when clicking a link (on mobile)
+            navLinks.addEventListener('click', function(e) {
+                if (e.target.classList.contains('nav-node') && window.innerWidth <= 768) {
+                    closeNav();
+                }
+            });
+
+            // Close nav on outside click (mobile)
+            document.addEventListener('click', function(e) {
+                if (nav.classList.contains('open') && window.innerWidth <= 768) {
+                    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                        closeNav();
+                    }
+                }
+            });
+
+            // Close nav on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeNav();
+                }
+            });
+
             // Load main script after DOM is ready
             const script = document.createElement('script');
             script.src = 'script.js';
             script.async = true;
             document.body.appendChild(script);
         });
-        
+
         // Preload critical resources
         if ('requestIdleCallback' in window) {
             requestIdleCallback(function() {
