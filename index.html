@@ -1,265 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WATERLINE | Where Cinema Dissolves Into Art</title>
-    <meta name="description" content="Waterline Film Festival - An immersive journey through independent cinema, emerging filmmakers, and the fluid boundaries of visual storytelling">
-    <meta name="keywords" content="experimental cinema, film festival, independent filmmakers, visual arts, creative storytelling, avant-garde films, cinema careers, artistic expression">
-    
-    <!-- Preload critical resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Performance optimizations -->
-    <meta name="theme-color" content="#0a0a0a">
-    <style>
-        /* Critical CSS for above-the-fold content */
-        body { 
-            font-family: 'Playfair Display', serif; 
-            background: #0a0a0a; 
-            color: #fefefe; 
-            margin: 0; 
-            padding: 0;
-            overflow-x: hidden;
-        }
-        .hero-canvas { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-    </style>
-</head>
-<body>
-    <!-- PERFORMANCE OPTIMIZED BACKGROUND LAYERS -->
-    <div class="liquid-canvas" aria-hidden="true"></div>
-    <div class="organic-layer" aria-hidden="true">
-        <div class="morphing-blob blob-1"></div>
-        <div class="morphing-blob blob-2"></div>
-        <div class="morphing-blob blob-3"></div>
-    </div>
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <!-- FLOATING SYMBOLS -->
-    <div class="floating-symbols" id="symbolsContainer" aria-hidden="true"></div>
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  background: #0e0e2c;
+  color: white;
+}
 
-    <!-- CUSTOM CURSOR -->
-    <div class="artistic-cursor" aria-hidden="true"></div>
-    <div class="cursor-trail" aria-hidden="true"></div>
+canvas#waveCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
-    <!-- NAVIGATION OVERLAY FOR MOBILE -->
-    <div class="nav-overlay" id="navOverlay"></div>
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 5vh 5vw;
+}
 
-    <!-- OPTIMIZED NAVIGATION -->
-    <nav class="nav-constellation" role="navigation" aria-label="Main navigation" id="mainNav">
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNavLinks">
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-        </button>
-        <div class="nav-links" id="mainNavLinks">
-            <a href="#home" class="nav-node">Home</a>
-            <a href="#about" class="nav-node">Vision</a>
-            <a href="#spotlight" class="nav-node">Artists</a>
-            <a href="#contact" class="nav-node">Connect</a>
-        </div>
-    </nav>
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-    <!-- FLOATING COUNTER -->
-    <div class="counter-artifact" aria-label="Submission counter">
-        <span class="counter-number" id="submissionCount" aria-live="polite">0</span>
-        <span aria-hidden="true">SUBMISSIONS</span>
-    </div>
+.title {
+  font-size: 10vw;
+  font-weight: bold;
+  background: linear-gradient(to right, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: floatText 3s ease-in-out infinite;
+}
 
-    <!-- HERO CANVAS -->
-    <section id="home" class="hero-canvas" role="banner">
-        <h1 class="hero-title">
-            <span class="title-water">WATER</span>
-            <span class="title-line">LINE</span>
-        </h1>
-        <div class="hero-subtitle" role="doc-subtitle">
-            Where Independent Cinema Dissolves Into Pure Artistic Expression
-        </div>
-    </section>
+.subtitle {
+  font-size: 2vw;
+  opacity: 0.7;
+}
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="section-canvas reveal" role="main">
-        <div class="vision-masterpiece">
-            <h2 class="section-title">Our Vision</h2>
-            
-            <div class="vision-intro">
-                <p>Waterline exists at the intersection where conventional cinema dissolves into pure artistic expression. We celebrate filmmakers who dare to push boundaries, break rules, and create visual poetry that transcends traditional storytelling.</p>
-            </div>
-            
-            <div class="vision-gallery">
-                <article class="vision-card">
-                    <div class="vision-icon" aria-hidden="true">🎬</div>
-                    <h3>Experimental Cinema</h3>
-                    <p>Our festival is not just a screening—it's a laboratory of creativity, a space where emerging voices can experiment with the language of cinema. We believe that the most powerful films are those that flow like water, adapting to new forms while maintaining their essential artistic truth.</p>
-                </article>
-                
-                <article class="vision-card">
-                    <div class="vision-icon" aria-hidden="true">🌊</div>
-                    <h3>Fluid Storytelling</h3>
-                    <p>Join us in supporting a new generation of filmmakers who understand that cinema is not just entertainment—it's a living, breathing art form that can reshape perception and challenge reality itself.</p>
-                </article>
-            </div>
-            
-            <div class="vision-showcase">
-                <div class="showcase-text">
-                    <h3>Where Art Meets Innovation</h3>
-                    <p>We curate experiences that challenge the conventional boundaries of filmmaking. Each selected work represents a bold step into uncharted creative territories, where technical innovation serves artistic vision and storytelling transcends traditional formats.</p>
-                </div>
-                
-                <div class="vision-art-piece" aria-hidden="true"></div>
-            </div>
-        </div>
-    </section>
+.about, .features {
+  padding: 10vh 5vw;
+  background: rgba(0, 0, 0, 0.5);
+  margin-top: 5vh;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
 
-    <!-- FILMMAKER SPOTLIGHT -->
-    <section id="spotlight" class="section-canvas reveal">
-        <div style="width: 100%;">
-            <h2 class="section-title">Featured Artists</h2>
-            <div class="filmmaker-gallery">
-                <article class="filmmaker-portrait">
-                    <h3 class="filmmaker-name">Zara Chen</h3>
-                    <h4 class="film-title">LIQUID MEMORIES</h4>
-                    <p class="filmmaker-bio">A multimedia artist who explores the fluidity of memory through experimental documentary techniques. Zara's work blends reality with digital manipulation, creating dreamlike narratives that question the nature of truth in modern media.</p>
-                </article>
-                
-                <article class="filmmaker-portrait">
-                    <h3 class="filmmaker-name">Marcus Rivera</h3>
-                    <h4 class="film-title">CHROME REFLECTIONS</h4>
-                    <p class="filmmaker-bio">Former street artist turned filmmaker, Marcus creates visceral urban narratives that capture the raw energy of city life. His films are painted with light, using innovative cinematography to transform concrete landscapes into abstract art.</p>
-                </article>
-                
-                <article class="filmmaker-portrait">
-                    <h3 class="filmmaker-name">Indira Patel</h3>
-                    <h4 class="film-title">BETWEEN BREATHS</h4>
-                    <p class="filmmaker-bio">A poet of cinema who specializes in intimate character studies. Indira's films explore the spaces between words, the pauses between breaths, finding profound beauty in the smallest human moments and transforming them into cinematic poetry.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+.about h2, .features h2 {
+  font-size: 4vw;
+  margin-bottom: 1vh;
+}
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section-canvas reveal">
-        <div class="contact-laboratory">
-            <h2 class="section-title">Join Our Vision</h2>
-            <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.8; margin-bottom: 40px;">
-                Ready to dissolve the boundaries between cinema and art? Submit your work to Waterline Film Festival and become part of a movement that's redefining visual storytelling.
-            </p>
-            
-            <form class="contact-form" role="form" aria-label="Contact form">
-                <div class="form-constellation">
-                    <input type="text" class="input-field" placeholder="Artist Name" required aria-label="Enter your artist name">
-                    <input type="email" class="input-field" placeholder="Email Portal" required aria-label="Enter your email address">
-                </div>
-                <div class="form-constellation">
-                    <input type="text" class="input-field" placeholder="Film Title" aria-label="Enter your film title">
-                    <input type="text" class="input-field" placeholder="Creative Role" aria-label="Enter your creative role">
-                </div>
-                <textarea class="input-field message-field" placeholder="Describe your artistic vision..." required aria-label="Describe your artistic vision"></textarea>
-                <button type="submit" class="submit-artifact">SEND MESSAGE</button>
-            </form>
-        </div>
-    </section>
+.features ul {
+  list-style: none;
+}
 
-    <!-- OPTIMIZED SCRIPT LOADING -->
-    <script>
-        // Hamburger menu logic and nav mobile fixes
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburgerBtn');
-            const nav = document.getElementById('mainNav');
-            const navLinks = document.getElementById('mainNavLinks');
-            const body = document.body;
-            const navOverlay = document.getElementById('navOverlay');
-            let isNavOpen = false;
+.features li {
+  font-size: 1.5vw;
+  margin: 1vh 0;
+  position: relative;
+  padding-left: 20px;
+}
 
-            function closeNav() {
-                if (!isNavOpen) return;
-                nav.classList.remove('open');
-                hamburger.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                body.classList.remove('nav-open');
-                if (navOverlay) navOverlay.classList.remove('active');
-                isNavOpen = false;
-            }
+.features li::before {
+  content: '\2022';
+  color: #00d2ff;
+  font-size: 2vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 1.5vw;
+}
 
-            function openNav() {
-                if (isNavOpen) return;
-                nav.classList.add('open');
-                hamburger.classList.add('open');
-                hamburger.setAttribute('aria-expanded', 'true');
-                body.classList.add('nav-open');
-                if (navOverlay) navOverlay.classList.add('active');
-                isNavOpen = true;
-            }
+@keyframes floatText {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-            function toggleNav(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isNavOpen) {
-                    closeNav();
-                } else {
-                    openNav();
-                }
-            }
-
-            // Hamburger click handler
-            if (hamburger) {
-                hamburger.addEventListener('click', toggleNav);
-                hamburger.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    toggleNav(e);
-                });
-            }
-
-            // Overlay click closes nav
-            if (navOverlay) {
-                navOverlay.addEventListener('click', closeNav);
-                navOverlay.addEventListener('touchend', closeNav);
-            }
-
-            // Close nav when clicking a link
-            if (navLinks) {
-                navLinks.addEventListener('click', function(e) {
-                    if (e.target.classList.contains('nav-node')) {
-                        setTimeout(closeNav, 100);
-                    }
-                });
-            }
-
-            // Close nav on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isNavOpen) {
-                    closeNav();
-                }
-            });
-
-            // Close nav on resize to desktop
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && isNavOpen) {
-                    closeNav();
-                }
-            });
-
-            // Load main script after DOM is ready
-            const script = document.createElement('script');
-            script.src = 'script.js';
-            script.async = true;
-            document.body.appendChild(script);
-        });
-
-        // Preload critical resources
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(function() {
-                // Preload images or other resources here if needed
-            });
-        }
-    </script>
-</body>
-</html>
+@media (max-width: 768px) {
+  .title {
+    font-size: 14vw;
+  }
+  .subtitle {
+    font-size: 4vw;
+  }
+  .about h2, .features h2 {
+    font-size: 6vw;
+  }
+  .features li {
+    font-size: 3vw;
+  }
+}
